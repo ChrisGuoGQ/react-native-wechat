@@ -286,7 +286,7 @@ RCT_EXPORT_METHOD(shareToSession:(NSDictionary *)data
 {
     NSString *imageUrl = aData[RCTWXShareTypeThumbImageUrl];
     if (imageUrl.length && _bridge.imageLoader) {
-        NSURLRequest *imageRequest = [NSURLRequest requestWithURL:aData[RCTWXShareTypeThumbImageUrl]];
+        NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:aData[RCTWXShareTypeThumbImageUrl]]];
         [_bridge.imageLoader loadImageWithURLRequest:imageRequest size:CGSizeMake(100, 100) scale:1 clipped:FALSE resizeMode:RCTResizeModeStretch progressBlock:nil completionBlock:^(NSError *error, UIImage *image) {
             [self shareToWeixinWithData:aData thumbImage:image scene:aScene callBack:aCallBack];
         }];
